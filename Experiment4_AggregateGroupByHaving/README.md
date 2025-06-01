@@ -37,125 +37,235 @@ HAVING condition;
 ```
 
 **Question 1**
---
--- Paste Question 1 here
 
-```sql
--- Paste your SQL code below for Question 1
 ```
+What is the average duration of insurance coverage for patients covered by each insurance company?
 
+Sample table:Insurance Table
+
+name               type
+-----------------  ----------
+InsuranceID        INTEGER
+PatientID          INTEGER
+InsuranceCompany   TEXT
+PolicyNumber       TEXT
+PolicyHolder       TEXT
+StartDate          DATE
+EndDate            DATE
+For example:
+Result
+InsuranceCompany  AvgCoverageDurationDays
+----------------  -----------------------
+ABC Insurance     7.0
+DEF Insurance     3.0
+JKL Insurance     3.0
+STU Insurance     3.0
+VWX Insurance     3.0
+XYZ Insurance     3.0
+YZA Insurance     3.0
+```
+SQL code 
+```
+SELECT InsuranceCompany,AVG((EndDate - StartDate)) AS AvgCoverageDurationDays
+FROM Insurance
+GROUP BY InsuranceCompany;
+```
 **Output:**
 
-![Output1](output.png)
+<img width="392" alt="image" src="https://github.com/user-attachments/assets/3c678e88-dac1-4537-9a33-6df3986bd13d" />
 
 **Question 2**
----
--- Paste Question 2 here
 
-```sql
--- Paste your SQL code below for Question 2
+![image](https://github.com/user-attachments/assets/01e4dc7c-9439-4404-8e5a-a360b907a25d)
+
+
+SQL code 
+```
+SELECT strftime('%Y',ValidityPeriod) AS "ValidityYear",COUNT(PatientID) AS "TotalPatients"
+FROM Insurance
+GROUP BY ValidityPeriod;
 ```
 
 **Output:**
 
-![Output2](output.png)
+![image](https://github.com/user-attachments/assets/fccf3624-75a5-40a1-83e6-731bba8316e8)
 
 **Question 3**
----
--- Paste Question 3 here
-
-```sql
--- Paste your SQL code below for Question 3
 ```
+Write a SQL query to find the average length of names for people living in Chennai?
 
+Table: customer
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT   
+city        TEXT
+email       TEXT
+phone       INTEGER
+For example:
+
+Result
+avg_name_length
+---------------
+10.0
+
+
+```
+SQL code 
+```
+SELECT AVG(LENGTH(name)) AS avg_name_length
+FROM customer
+WHERE city = 'Chennai';
+```
 **Output:**
 
-![Output3](output.png)
+<img width="286" alt="image" src="https://github.com/user-attachments/assets/76d7738b-24f4-4da1-9809-fece76082523" />
 
 **Question 4**
----
--- Paste Question 4 here
-
-```sql
--- Paste your SQL code below for Question 4
 ```
+Write a SQL query to Calculate the average email length (in characters) for people who lives in Mumbai city
 
+Table: customer
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT   
+city        TEXT
+email       TEXT
+phone       INTEGER
+For example:
+
+Result
+avg_email_length_below_30
+-------------------------
+14.0
+```
+SQL code 
+```
+SELECT AVG(LENGTH(email)) AS avg_email_length_below_30
+FROM customer
+WHERE city = 'Mumbai';
+```
 **Output:**
 
-![Output4](output.png)
+<img width="374" alt="image" src="https://github.com/user-attachments/assets/ab0d788c-1474-490a-9564-ee7242f59eef" />
 
 **Question 5**
----
--- Paste Question 5 here
+![image](https://github.com/user-attachments/assets/eaee3f19-9d5a-43b6-8451-db0c6de8c2d9)
 
-```sql
--- Paste your SQL code below for Question 5
+SQL code 
 ```
-
+SELECT jdate,MIN(workhour) AS "MIN(workhour)"
+FROM employee1
+GROUP BY jdate
+HAVING MIN(workhour) < 10;
+```
 **Output:**
 
-![Output5](output.png)
+![image](https://github.com/user-attachments/assets/2937d95f-1e2e-4e7e-91b0-de2c541d2cb3)
 
 **Question 6**
----
--- Paste Question 6 here
 
-```sql
--- Paste your SQL code below for Question 6
+![image](https://github.com/user-attachments/assets/41f3ff03-cb78-4df4-a496-b37eecead1c3)
+
+
+SQL code 
+```
+SELECT jdate,MIN(workhour) AS "MIN(workhour)"
+FROM employee1
+GROUP BY jdate
+HAVING MIN(workhour) < 10;
+SELECT age,MIN(income) AS "MIN(income)"
+FROM employee
+GROUP BY age
+Having MIN(income) < 400000;
 ```
 
 **Output:**
 
-![Output6](output.png)
+![image](https://github.com/user-attachments/assets/068e97a8-a041-45cf-9159-0667574b2ada)
 
 **Question 7**
----
--- Paste Question 7 here
+![image](https://github.com/user-attachments/assets/d58a9d0f-75ff-4d23-9a6e-ff9dbbf76897)
 
-```sql
--- Paste your SQL code below for Question 7
+
+SQL code
+```
+SELECT strftime('%Y',ValidityPeriod) AS "ValidityYear",COUNT(PatientID) AS "TotalPatients"
+FROM Insurance
+GROUP BY ValidityPeriod;
 ```
 
 **Output:**
 
-![Output7](output.png)
+![image](https://github.com/user-attachments/assets/d57e25e9-e3fb-4b45-a26a-29dfb79113b5)
 
 **Question 8**
----
--- Paste Question 8 here
+![image](https://github.com/user-attachments/assets/6757af8e-3b94-4f8d-8732-84ca0340bb1a)
 
-```sql
--- Paste your SQL code below for Question 8
+SQL code 
+```
+SELECT Medication,Avg(Dosage) AS "AvgDosage"
+FROM Prescriptions
+GROUP BY Medication;
 ```
 
 **Output:**
 
-![Output8](output.png)
+![image](https://github.com/user-attachments/assets/58c8c467-6068-4bcc-8eb9-ad68680cd758)
 
 **Question 9**
----
--- Paste Question 9 here
+```
+Write a SQL query to determine the number of customers who received at least one grade for their activity.
 
-```sql
--- Paste your SQL code below for Question 9
+Sample table: customer
+
+customer_id |   cust_name    |    city    | grade | salesman_id 
+
+-------------+----------------+------------+-------+-------------
+
+        3002 | Nick Rimando   | New York   |   100 |        5001
+
+        3007 | Brad Davis     | New York   |   200 |        5001
+
+        3005 | Graham Zusi    | California |   200 |        5002
+
+For example:
+
+Result
+COUNT
+----------
+8
+
+```
+SQL code 
+```
+SELECT COUNT(cust_name) AS COUNT
+FROM customer;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="312" alt="image" src="https://github.com/user-attachments/assets/4f17f6de-d652-493f-977b-63a7a7725b09" />
 
 **Question 10**
----
--- Paste Question 10 here
+![image](https://github.com/user-attachments/assets/f552123d-c17f-41d9-b73d-b4d22d7d71b3)
 
-```sql
--- Paste your SQL code below for Question 10
+
+SQL code
 ```
-
+SELECT PatientID,COUNT(Medication) AS "TotalMedications"
+FROM Prescriptions
+GROUP BY PatientID;
+```
 **Output:**
 
-![Output10](output.png)
-
+![image](https://github.com/user-attachments/assets/8a5aef2e-3e3c-4fcc-8344-7eae95dbc33c)
 
 ## RESULT
+
+![Screenshot 2025-04-30 212935](https://github.com/user-attachments/assets/84122ac5-1b7a-4841-9305-2102fdbeab3d)
+
 Thus, the SQL queries to implement aggregate functions, GROUP BY, and HAVING clause have been executed successfully.
