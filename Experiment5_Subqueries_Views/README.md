@@ -99,7 +99,6 @@ WHERE customer_id = 3007
 ![image](https://github.com/user-attachments/assets/22d1bf89-d476-46bb-a1d5-c24801c37f9e)
 
 **Question 3**
-**Question 3**
 ```
 Write a SQL query to retrieve all columns from the CUSTOMERS table for customers whose salary is LESS than $2500.
 
@@ -120,7 +119,7 @@ SQL Code;
 ```
 SELECT * FROM CUSTOMERS
 WHERE SALARY < 2500;
-
+```
 **Output:**
 
 ![image](https://github.com/user-attachments/assets/0bcdd118-c5bd-4143-a1e6-f4e032d85e0e)
